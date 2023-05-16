@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ContactForm } from './ContactForm/ContactForm';
 import { useEffect } from 'react';
-import { getContactThunk } from 'store/thunks';
+import { getContactThunk, deleteContactThunk } from 'store/thunks';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,10 @@ export const App = () => {
   const isLoading = useSelector(state => state.contacts.isLoading);
 
   // console.log('contacts -> ', contacts);
+
+  const handleDeleteContact = contactID => {
+    dispatch(deleteContactThunk(contactID));
+  };
 
   return (
     <div
@@ -40,7 +44,7 @@ export const App = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    console.log(id);
+                    handleDeleteContact(id);
                   }}
                 >
                   Delete

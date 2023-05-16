@@ -37,14 +37,10 @@ const handleFulfilledCreate = (state, action) => {
 };
 
 const handleFulfilledDelete = (state, action) => {
-  const filteredContacts = state.items.filter(
-    contact => contact.id !== action.payload
-  );
-
   return {
     ...state,
     isLoading: false,
-    items: filteredContacts,
+    items: [...action.payload],
     error: null,
   };
 };

@@ -20,6 +20,17 @@ export const createContact = async data => {
 };
 
 export const deleteContact = async id => {
-  const res = await fetch(`${BASE_URL}/products/${id}`);
-  return await res.json();
+  // const res = await fetch(`${BASE_URL}/contacts/${id}`, { method: 'DELETE' });
+
+  // return await res.json();
+  try {
+    await fetch(`${BASE_URL}/contacts/${id}`, { method: 'DELETE' });
+    const data = await fetch(`${BASE_URL}/contacts`);
+    if (data.statusText === 'OK') {
+      return await data.json();
+    }
+  } catch (error) {
+    console.error(error.message);
+    return error.message;
+  }
 };
