@@ -31,7 +31,7 @@ const handleFulfilledCreate = (state, action) => {
   return {
     ...state,
     isLoading: false,
-    items: [...state.items, action.payload.items],
+    items: [...action.payload],
     error: null,
   };
 };

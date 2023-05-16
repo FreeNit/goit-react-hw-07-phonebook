@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { createContactThunk } from 'store/thunks';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -9,9 +10,10 @@ export const ContactForm = () => {
 
     const contact = {
       name: evt.target.elements.name.value,
-      number: evt.target.elements.number.value,
+      phone: evt.target.elements.number.value,
     };
-    console.log(contact);
+
+    dispatch(createContactThunk(contact));
   };
 
   return (
