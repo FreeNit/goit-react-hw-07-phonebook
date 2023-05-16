@@ -30,6 +30,8 @@ export const ContactForm = () => {
     }
 
     dispatch(createContactThunk(contact));
+    // -> Reset form`s fields
+    evt.target.reset();
   };
 
   return (
