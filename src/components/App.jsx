@@ -56,7 +56,7 @@ export const App = () => {
       <div>
         {isLoading && <h3>...Loading</h3>}
 
-        {visibleContacts.length > 0 && (
+        {contacts.length > 0 && (
           <div>
             <div>
               <label>
