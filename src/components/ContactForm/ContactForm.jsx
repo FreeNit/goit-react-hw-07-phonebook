@@ -4,7 +4,10 @@ import { createContactThunk } from 'store/thunks';
 import { NotificationManager } from 'react-notifications';
 
 const checkUserAvailability = (contacts, userName) => {
-  return contacts.find(contact => contact.name === userName);
+  const userNameNormalized = userName.toLowerCase();
+  return contacts.find(
+    contact => contact.name.toLowerCase() === userNameNormalized
+  );
 };
 
 export const ContactForm = () => {
