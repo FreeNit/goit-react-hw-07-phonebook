@@ -3,6 +3,12 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { useEffect } from 'react';
 import { getContactThunk, deleteContactThunk } from 'store/thunks';
 
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -54,6 +60,7 @@ export const App = () => {
           </ul>
         )}
       </div>
+      <NotificationContainer />
     </div>
   );
 };

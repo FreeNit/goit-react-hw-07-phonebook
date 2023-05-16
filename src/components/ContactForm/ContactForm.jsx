@@ -1,8 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createContactThunk } from 'store/thunks';
+
+import { NotificationManager } from 'react-notifications';
+
+const checkUserAvailability = (contacts, userName) => {
+  return contacts.find(contact => contact.name === userName);
+};
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+
+  const contacts = useSelector(state => state.contacts.items);
 
   // -> Prevent default from behavior
   const handleSubmit = evt => {
@@ -12,6 +20,14 @@ export const ContactForm = () => {
       name: evt.target.elements.name.value,
       phone: evt.target.elements.number.value,
     };
+
+    // -> Check if user name is already in the list
+    const isUserAvailable = checkUserAvailability(contacts, contact.name);
+
+    if (isUserAvailable) {
+      NotificationManager.warning(`${contact.name} is already in contacts`);
+      return;
+    }
 
     dispatch(createContactThunk(contact));
   };
